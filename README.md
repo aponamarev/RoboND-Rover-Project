@@ -17,11 +17,11 @@
 ---
 **The goals / steps of this project are the following:**  
 
-**Training / Calibration**  
+### Training / Calibration
 
 The overall approach is described in code/Rover_Project_Test_Notebook.ipynb. 
 
-* Add functions to detect obstacles and samples of interest (golden rocks)
+#### Add functions to detect obstacles and samples of interest (golden rocks)
 
 In order to identify navigable terrain, obstacles, and samples of interest I created analyze_color(img, high, low, color=0, channel=0) (utility function) that helps to try various color channels and thresholds. The function is located in code cell 6 of the ipython book.
 Next, I identified the best color channels and the best thresholds for:
@@ -32,7 +32,7 @@ Next, I identified the best color channels and the best thresholds for:
 
 obstacles will be defined as everything else. For illustration please refer to code/perception.py lines 125 and 126.
 
-* Fill in the `process_image()` function with the appropriate image processing steps (perspective transform, color threshold etc.) to get from raw images to a map.  The `output_image` you create in this step should demonstrate that your mapping pipeline works.
+#### Fill in the `process_image()` function with the appropriate image processing steps (perspective transform, color threshold etc.) to get from raw images to a map.  The `output_image` you create in this step should demonstrate that your mapping pipeline works.
 
 Updated process_image() function located in code cell 12 of ipython book. In order to process image correctly I added the following steps:
 1) Apply color threshold to identify navigable and a rock
@@ -53,9 +53,9 @@ The result of processing provided images with moviepy presented below:
 
 
 
-**Autonomous Navigation / Mapping**
+### Autonomous Navigation / Mapping
 
-* Fill in the `perception_step()` function within the `perception.py` script with the appropriate image processing functions to create a map and update `Rover()` data (similar to what you did with `process_image()` in the notebook).
+#### Fill in the `perception_step()` function within the `perception.py` script with the appropriate image processing functions to create a map and update `Rover()` data (similar to what you did with `process_image()` in the notebook).
 
 Updated perception_step() function is located in code/perception.py lines 108 - 152.
 
@@ -66,7 +66,7 @@ Main changes:
 4) Convert rover-centric pixel values to world coordinates - lines 131 - 140
 5) Update world map - lines 141 - 146
 
-* Fill in the `decision_step()` function within the `decision.py` script with conditional statements that take into consideration the outputs of the `perception_step()` in deciding how to issue throttle, brake and steering commands.
+#### Fill in the `decision_step()` function within the `decision.py` script with conditional statements that take into consideration the outputs of the `perception_step()` in deciding how to issue throttle, brake and steering commands.
 
 In order to achieve targeted at least 40% of the environment with 60% fidelity I made the following changes:
 1) Added Rover.est_steering() method - designed to provide average angle of the widest terrain area. Average steering angle provides a good starting point for picking a direction. However, this approach is not a good fit when Rover encounters 2 paths. The solution proposed in this method splits terrain into 2 parts and chooses the wides path. For more details please refer to drive_rover.py lines 80 - 98.
@@ -74,7 +74,7 @@ In order to achieve targeted at least 40% of the environment with 60% fidelity I
 
 In addition, I increased maximum speed and acceleration (lines 65 and 56 respectively) to speed up the data collection.
 
-* Iterate on your perception and decision function until your rover does a reasonable (need to define metric) job of navigating and mapping.  
+#### Iterate on your perception and decision function until your rover does a reasonable (need to define metric) job of navigating and mapping.  
 
 As a result, Rover achieved approximately 60% coverage at 65% fidelity rate. A video illustration is located below:
 [link to my video result](./output/autonomous.mp4)
@@ -85,7 +85,7 @@ As a result, Rover achieved approximately 60% coverage at 65% fidelity rate. A v
 For simulation I used provided Roversim.app. I ran this simulation using 640 x 480 screen resolution and fastest graphics quality. Resulting output was in 11 - 14 FPS range.
 
 
-# Other considerations and further steps
+## Other considerations and further steps
 
 Overall this approach offers a good start. However it can be improved in the following areas:
 1) Perspective transform: My current approach relies of fixed source and destination point for the description of a plane needed for perspective transform. As a result, the transformation process can be incorrect at various slopes of the navigable terrain. Addition challenge represent the acceleration and breaking point. A possible solution for this problem could be an automated method for approximating the best plane to describe the navigable terrain.
