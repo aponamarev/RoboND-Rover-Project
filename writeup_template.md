@@ -36,7 +36,7 @@ In addition, I added information related to rock sample on the resulting image. 
 * Use `moviepy` to process the images in your saved dataset with the `process_image()` function.  Include the video you produce as part of your submission.
 
 The result of processing provided images with moviepy presented below:
-[link to my video result](./output//test_mapping.mp4)
+[link to my video result](./output/autonomous.mp4)
 
 
 
@@ -53,8 +53,19 @@ Main changes:
 4) Convert rover-centric pixel values to world coordinates - lines 131 - 140
 5) Update world map - lines 141 - 146
 
-* Fill in the `decision_step()` function within the `decision.py` script with conditional statements that take into consideration the outputs of the `perception_step()` in deciding how to issue throttle, brake and steering commands. 
+* Fill in the `decision_step()` function within the `decision.py` script with conditional statements that take into consideration the outputs of the `perception_step()` in deciding how to issue throttle, brake and steering commands.
+
+In order to achieve targeted at least 40% of the environment with 60% fidelity I made the following changes:
+1) Added Rover.est_steering() method - designed to provide average angle of the widest terrain area. Average steering angle provides a good starting point for picking a direction. However, this approach is not a good fit when Rover encounters 2 paths. The solution proposed in this method splits terrain into 2 parts and chooses the wides path. For more details please refere to drive_rover.py lines 80 - 98.
+2) Applied Rover.est_steering() to steering angle calculation when Rover is moving forward - descision.py line 29.
+
+In addition, I increased maximum speed and acceleration (lines 65 and 56 respectively) to speed up the data collection.
+
 * Iterate on your perception and decision function until your rover does a reasonable (need to define metric) job of navigating and mapping.  
+
+As a result, Rover achieved approximately 60% coverage at 65% fidelity rate. A video illustraton is located below:
+[link to my video result](./output/test_mapping.mp4)
+
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/916/view) Points
 ### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
