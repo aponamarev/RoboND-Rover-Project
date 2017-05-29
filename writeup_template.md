@@ -25,6 +25,7 @@ The overall approach is described in code/Rover_Project_Test_Notebook.ipynb.
 In order to identify navigatable terrain, obstacles, and samples of interest I created analyze_color(img, high, low, color=0, channel=0) (utility function) that helps to try various color channels and thresholds. The function is located in code cell 6 of the ipython book.
 Next, I identified the best color channels and the best thresholds for:
 * navigable terrain (code cell 7): Navigatable terrain is best identified in YUV color scheme on Y channel. For the threshold I used the following bounds (160, 255).
+![alt text][terrain]
 * sample rock (code cell 8): Navigatable terrain is best identified in LAB color scheme on B channel. For the threshold I used the following bounds (150, 255):
 ![alt text][samplerock]
 
