@@ -23,14 +23,14 @@ The overall approach is described in code/Rover_Project_Test_Notebook.ipynb.
 
 * Add functions to detect obstacles and samples of interest (golden rocks)
 
-In order to identify navigatable terrain, obstacles, and samples of interest I created analyze_color(img, high, low, color=0, channel=0) (utility function) that helps to try various color channels and thresholds. The function is located in code cell 6 of the ipython book.
+In order to identify navigable terrain, obstacles, and samples of interest I created analyze_color(img, high, low, color=0, channel=0) (utility function) that helps to try various color channels and thresholds. The function is located in code cell 6 of the ipython book.
 Next, I identified the best color channels and the best thresholds for:
-* navigable terrain (code cell 7): Navigatable terrain is best identified in YUV color scheme on Y channel. For the threshold I used the following bounds (160, 255).
+* navigable terrain (code cell 7): Navigable terrain is best identified in YUV color scheme on Y channel. For the threshold I used the following bounds (160, 255).
 ![alt text][terrain]
-* sample rock (code cell 8): Navigatable terrain is best identified in LAB color scheme on B channel. For the threshold I used the following bounds (150, 255):
+* sample rock (code cell 8): Navigable terrain is best identified in LAB color scheme on B channel. For the threshold I used the following bounds (150, 255):
 ![alt text][samplerock]
 
-obstacles will be defined as everything else. For illustration please refere to code/perception.py lines 125 and 126.
+obstacles will be defined as everything else. For illustration please refer to code/perception.py lines 125 and 126.
 
 * Fill in the `process_image()` function with the appropriate image processing steps (perspective transform, color threshold etc.) to get from raw images to a map.  The `output_image` you create in this step should demonstrate that your mapping pipeline works.
 
@@ -69,14 +69,14 @@ Main changes:
 * Fill in the `decision_step()` function within the `decision.py` script with conditional statements that take into consideration the outputs of the `perception_step()` in deciding how to issue throttle, brake and steering commands.
 
 In order to achieve targeted at least 40% of the environment with 60% fidelity I made the following changes:
-1) Added Rover.est_steering() method - designed to provide average angle of the widest terrain area. Average steering angle provides a good starting point for picking a direction. However, this approach is not a good fit when Rover encounters 2 paths. The solution proposed in this method splits terrain into 2 parts and chooses the wides path. For more details please refere to drive_rover.py lines 80 - 98.
+1) Added Rover.est_steering() method - designed to provide average angle of the widest terrain area. Average steering angle provides a good starting point for picking a direction. However, this approach is not a good fit when Rover encounters 2 paths. The solution proposed in this method splits terrain into 2 parts and chooses the wides path. For more details please refer to drive_rover.py lines 80 - 98.
 2) Applied Rover.est_steering() to steering angle calculation when Rover is moving forward - descision.py line 29.
 
 In addition, I increased maximum speed and acceleration (lines 65 and 56 respectively) to speed up the data collection.
 
 * Iterate on your perception and decision function until your rover does a reasonable (need to define metric) job of navigating and mapping.  
 
-As a result, Rover achieved approximately 60% coverage at 65% fidelity rate. A video illustraton is located below:
+As a result, Rover achieved approximately 60% coverage at 65% fidelity rate. A video illustration is located below:
 [link to my video result](./output/autonomous.mp4)
 
 
@@ -85,9 +85,9 @@ As a result, Rover achieved approximately 60% coverage at 65% fidelity rate. A v
 For simulation I used provided Roversim.app. I ran this simulation using 640 x 480 screen resolution and fastest graphics quality. Resulting output was in 11 - 14 FPS range.
 
 
-# Other considerations and futher steps
+# Other considerations and further steps
 
 Overall this approach offers a good start. However it can be improved in the following areas:
-1) Perspective transform: My current approach relies of fixed source and destination point for the description of a plane needed for perspective transform. As a result, the transformation process can be incorrect at various slopes of the navigable terrain. Addition challenge represent the accelerationa and breaking point. A possible solution for this problem could be an automated method for approximating the best plane to describe the navigable terrain.
-2) Differentiation between navigatable terrain, sample rocks and obstacles: this process is currently done relying on week filters - color channels and thresholding. These filters may lead to incorrect representation in various wheather lighting conditions. In order to overcome this problem, I would recomend to explore deep learning methods that can help to automate a process of creating filters. A good next step here would be to train a segmentation net.
-3) Descition making - currently our Rover relies on a rigid set of rules. These rules produce descent result. However, I believe that these rules can be improved significantly by using machine learning. One of the solutions can be to train a descision tree algorithm based on observations. An alternative solution would be to use recurrent nets or reinforcement learning to achieve optimal result.
+1) Perspective transform: My current approach relies of fixed source and destination point for the description of a plane needed for perspective transform. As a result, the transformation process can be incorrect at various slopes of the navigable terrain. Addition challenge represent the acceleration and breaking point. A possible solution for this problem could be an automated method for approximating the best plane to describe the navigable terrain.
+2) Differentiation between navigable terrain, sample rocks and obstacles: this process is currently done relying on week filters - color channels and thresholding. These filters may lead to incorrect representation in various whether lighting conditions. In order to overcome this problem, I would recommend to explore deep learning methods that can help to automate a process of creating filters. A good next step here would be to train a segmentation net.
+3) Decision making - currently our Rover relies on a rigid set of rules. These rules produce descent result. However, I believe that these rules can be improved significantly by using machine learning. One of the solutions can be to train a decision tree algorithm based on observations. An alternative solution would be to use recurrent nets or reinforcement learning to achieve optimal result.
