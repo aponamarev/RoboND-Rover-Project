@@ -53,15 +53,16 @@ class RoverState():
         self.nav_dists = None # Distances of navigable terrain pixels
         self.ground_truth = ground_truth_3d # Ground truth worldmap
         self.mode = 'forward' # Current mode (can be forward or stop)
-        self.throttle_set = 0.2 # Throttle setting when accelerating
+        self.throttle_set = 0.3 # Throttle setting when accelerating
         self.brake_set = 10 # Brake setting when braking
         # The stop_forward and go_forward fields below represent total count
         # of navigable terrain pixels.  This is a very crude form of knowing
         # when you can keep going and when you should stop.  Feel free to
         # get creative in adding new fields or modifying these!
         self.stop_forward = 50 # Threshold to initiate stopping
+        self.stop_forward_distance = 15  # Avg. distance threshold to initiate stopping
         self.go_forward = 500 # Threshold to go forward again
-        self.max_vel = 2 # Maximum velocity (meters/second)
+        self.max_vel = 3 # Maximum velocity (meters/second)
         # Image output from perception step
         # Update this image to display your intermediate analysis steps
         # on screen in autonomous mode
@@ -75,6 +76,30 @@ class RoverState():
         self.near_sample = 0 # Will be set to telemetry value data["near_sample"]
         self.picking_up = 0 # Will be set to telemetry value data["picking_up"]
         self.send_pickup = False # Set to True to trigger rock pickup
+
+    def est_steering(self):
+        """
+        est_steering designed to provide average angle of the widest terrain area
+        :return: average angle
+        """
+        # Average steering angle provides a good starting point for picking a direction
+        # However, this approach is not a good fit when Rover encounters 2 paths. The solution
+        # proposed in this method splits terrain into 2 parts and chooses the wides path.
+        # 1) Check if most of the angles are within 1 standard deviation
+        std = self.nav_angles.std()
+        mean = self.nav_angles.mean()
+        within_1std = self.nav_angles[(self.nav_angles > mean - std) | (self.nav_angles < mean + std)]
+        if within_1std.size / self.nav_angles.size < 0.6:
+            # 2) If majority of the angles lies beyond 1 std, split the angles into 2 groups
+            a1, a2 = self.nav_angles < mean, self.nav_angles > mean
+            # 3) Calculate an average angle of the largest group
+            largest_group = a1 if a1.size > a2.size else a2
+            mean = largest_group.mean()
+        return mean
+
+
+
+
 # Initialize our rover 
 Rover = RoverState()
 
