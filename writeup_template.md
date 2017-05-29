@@ -1,16 +1,19 @@
 ## Project: Search and Sample Return
-### Writeup Template: You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
 ---
-
-
 **The goals / steps of this project are the following:**  
 
 **Training / Calibration**  
 
-* Download the simulator and take data in "Training Mode"
-* Test out the functions in the Jupyter Notebook provided
+The overall approach is described in code/Rover_Project_Test_Notebook.ipynb. 
+
 * Add functions to detect obstacles and samples of interest (golden rocks)
+
+In order to identify navigatable terrain, obstacles, and samples of interest I created analyze_color(img, high, low, color=0, channel=0) (utility function) that helps to try various color channels and thresholds. The function is located in code cell 6 of the ipython book.
+Next, I identified the best color channels and the best thresholds for:
+* navigable terrain (code cell 7): Navigatable terrain is best identified in YUV color scheme on Y channel. For the threshold I used the following bounds (160, 255).
+* sample rock (code cell 8): Navigatable terrain is best identified in LAB color scheme on B channel. For the threshold I used the following bounds (150, 255).
+* obstacles will be defined as everything else. For illustration please refere to code/perception.py lines 125 and 126.
+
 * Fill in the `process_image()` function with the appropriate image processing steps (perspective transform, color threshold etc.) to get from raw images to a map.  The `output_image` you create in this step should demonstrate that your mapping pipeline works.
 * Use `moviepy` to process the images in your saved dataset with the `process_image()` function.  Include the video you produce as part of your submission.
 
