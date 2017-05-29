@@ -8,6 +8,7 @@
 [terrain]: ./output/terrain.jpg
 [warped]: ./output/warped.jpg
 [warped_terrain]: ./output/warped_terrain.jpg
+[process_img]: ./output/process_img.png
 
 [video1]: ./output/test_mapping.mp4 "Video1"
 [video2]: ./output/test_mapping.mp4 "Video2"
@@ -41,6 +42,9 @@ Updated process_image() function located in code cell 12 of ipython book. In ord
 5) Update worldmap (to be displayed on right side of screen)
 
 In addition, I added information related to rock sample on the resulting image. This task was accomplished by identifying sample rock and calculating the distance and the angle to the rock using detect_rock() function (in code cell 10).
+
+An example of the resulting output presented below:
+![alt text][process_img]
 
 * Use `moviepy` to process the images in your saved dataset with the `process_image()` function.  Include the video you produce as part of your submission.
 
