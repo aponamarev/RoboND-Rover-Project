@@ -85,33 +85,9 @@ As a result, Rover achieved approximately 60% coverage at 65% fidelity rate. A v
 For simulation I used provided Roversim.app. I ran this simulation using 640 x 480 screen resolution and fastest graphics quality. Resulting output was in 11 - 14 FPS range.
 
 
-## [Rubric](https://review.udacity.com/#!/rubrics/916/view) Points
-### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
+# Other considerations and futher steps
 
----
-README
-
-### Notebook Analysis
-#### 1. Run the functions provided in the notebook on test images (first with the test data provided, next on data you have recorded). Add/modify functions to allow for color selection of obstacles and rock samples.
-Here is an example of how to include an image in your writeup.
-
-![alt text][image1]
-
-#### 1. Populate the `process_image()` function with the appropriate analysis steps to map pixels identifying navigable terrain, obstacles and rock samples into a worldmap.  Run `process_image()` on your test data using the `moviepy` functions provided to create video output of your result. 
-And another! 
-
-![alt text][image2]
-### Autonomous Navigation and Mapping
-
-#### 1. Fill in the `perception_step()` (at the bottom of the `perception.py` script) and `decision_step()` (in `decision.py`) functions in the autonomous mapping scripts and an explanation is provided in the writeup of how and why these functions were modified as they were.
-
-
-#### 2. Launching in autonomous mode your rover can navigate and map autonomously.  Explain your results and how you might improve them in your writeup.  
-
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
-
-
-
-![alt text][image3]
-
-
+Overall this approach offers a good start. However it can be improved in the following areas:
+1) Perspective transform: My current approach relies of fixed source and destination point for the description of a plane needed for perspective transform. As a result, the transformation process can be incorrect at various slopes of the navigable terrain. Addition challenge represent the accelerationa and breaking point. A possible solution for this problem could be an automated method for approximating the best plane to describe the navigable terrain.
+2) Differentiation between navigatable terrain, sample rocks and obstacles: this process is currently done relying on week filters - color channels and thresholding. These filters may lead to incorrect representation in various wheather lighting conditions. In order to overcome this problem, I would recomend to explore deep learning methods that can help to automate a process of creating filters. A good next step here would be to train a segmentation net.
+3) Descition making - currently our Rover relies on a rigid set of rules. These rules produce descent result. However, I believe that these rules can be improved significantly by using machine learning. One of the solutions can be to train a descision tree algorithm based on observations. An alternative solution would be to use recurrent nets or reinforcement learning to achieve optimal result.
