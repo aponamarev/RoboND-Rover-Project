@@ -1,3 +1,10 @@
+[//]: # (Image References)
+
+[image1]: ./misc/rover_image.jpg
+[image2]: ./calibration_images/example_grid1.jpg
+[image3]: ./calibration_images/example_rock1.jpg
+[video1]: ./output//test_mapping.mp4 "Video"
+
 ## Project: Search and Sample Return
 ---
 **The goals / steps of this project are the following:**  
@@ -29,6 +36,9 @@ In addition, I added information related to rock sample on the resulting image. 
 * Use `moviepy` to process the images in your saved dataset with the `process_image()` function.  Include the video you produce as part of your submission.
 
 The result of processing provided images with moviepy presented below:
+[link to my video result](./output//test_mapping.mp4)
+![alt text][video1]
+
 
 
 **Autonomous Navigation / Mapping**
@@ -37,21 +47,11 @@ The result of processing provided images with moviepy presented below:
 * Fill in the `decision_step()` function within the `decision.py` script with conditional statements that take into consideration the outputs of the `perception_step()` in deciding how to issue throttle, brake and steering commands. 
 * Iterate on your perception and decision function until your rover does a reasonable (need to define metric) job of navigating and mapping.  
 
-[//]: # (Image References)
-
-[image1]: ./misc/rover_image.jpg
-[image2]: ./calibration_images/example_grid1.jpg
-[image3]: ./calibration_images/example_rock1.jpg 
-
 ## [Rubric](https://review.udacity.com/#!/rubrics/916/view) Points
 ### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
 
 ---
-### Writeup / README
-
-#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  
-
-You're reading it!
+README
 
 ### Notebook Analysis
 #### 1. Run the functions provided in the notebook on test images (first with the test data provided, next on data you have recorded). Add/modify functions to allow for color selection of obstacles and rock samples.
