@@ -3,7 +3,8 @@
 [image1]: ./misc/rover_image.jpg
 [image2]: ./calibration_images/example_grid1.jpg
 [image3]: ./calibration_images/example_rock1.jpg
-[video1]: ./output//test_mapping.mp4 "Video"
+[video1]: ./output/test_mapping.mp4 "Video1"
+[video2]: ./output/test_mapping.mp4 "Video2"
 
 ## Project: Search and Sample Return
 ---
@@ -36,7 +37,7 @@ In addition, I added information related to rock sample on the resulting image. 
 * Use `moviepy` to process the images in your saved dataset with the `process_image()` function.  Include the video you produce as part of your submission.
 
 The result of processing provided images with moviepy presented below:
-[link to my video result](./output/autonomous.mp4)
+[link to my video result](./output/test_mapping.mp4)
 
 
 
@@ -64,7 +65,7 @@ In addition, I increased maximum speed and acceleration (lines 65 and 56 respect
 * Iterate on your perception and decision function until your rover does a reasonable (need to define metric) job of navigating and mapping.  
 
 As a result, Rover achieved approximately 60% coverage at 65% fidelity rate. A video illustraton is located below:
-[link to my video result](./output/test_mapping.mp4)
+[link to my video result](./output/autonomous.mp4)
 
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/916/view) Points
