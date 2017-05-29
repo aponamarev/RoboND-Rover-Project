@@ -37,13 +37,22 @@ In addition, I added information related to rock sample on the resulting image. 
 
 The result of processing provided images with moviepy presented below:
 [link to my video result](./output//test_mapping.mp4)
-![alt text][video1]
 
 
 
 **Autonomous Navigation / Mapping**
 
-* Fill in the `perception_step()` function within the `perception.py` script with the appropriate image processing functions to create a map and update `Rover()` data (similar to what you did with `process_image()` in the notebook). 
+* Fill in the `perception_step()` function within the `perception.py` script with the appropriate image processing functions to create a map and update `Rover()` data (similar to what you did with `process_image()` in the notebook).
+
+Updated perception_step() function is located in code/perception.py lines 108 - 152.
+
+Main changes:
+1) Detect navigable terrain - achieved through a dedicated function detect_navigable_terrain(R.img)
+2) Detect rock sample - achieved through a dedicated function detect_rock(R.img, min_points_to_detect)
+3) Visualize results - updated Rover.vision_image in lines 122 - 129
+4) Convert rover-centric pixel values to world coordinates - lines 131 - 140
+5) Update world map - lines 141 - 146
+
 * Fill in the `decision_step()` function within the `decision.py` script with conditional statements that take into consideration the outputs of the `perception_step()` in deciding how to issue throttle, brake and steering commands. 
 * Iterate on your perception and decision function until your rover does a reasonable (need to define metric) job of navigating and mapping.  
 
