@@ -28,6 +28,9 @@ In addition, I added information related to rock sample on the resulting image. 
 
 * Use `moviepy` to process the images in your saved dataset with the `process_image()` function.  Include the video you produce as part of your submission.
 
+The result of processing provided images with moviepy presented below:
+
+
 **Autonomous Navigation / Mapping**
 
 * Fill in the `perception_step()` function within the `perception.py` script with the appropriate image processing functions to create a map and update `Rover()` data (similar to what you did with `process_image()` in the notebook). 
