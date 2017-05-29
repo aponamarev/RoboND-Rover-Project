@@ -3,6 +3,12 @@
 [image1]: ./misc/rover_image.jpg
 [image2]: ./calibration_images/example_grid1.jpg
 [image3]: ./calibration_images/example_rock1.jpg
+[grid_rock]: ./output/grid_rock.jpg
+[samplerock]: ./output/samplerock.jpg
+[terrain]: ./output/terrain.jpg
+[warped]: ./output/warped.jpg
+[warped_terrain]: ./output/warped_terrain.jpg
+
 [video1]: ./output/test_mapping.mp4 "Video1"
 [video2]: ./output/test_mapping.mp4 "Video2"
 
@@ -19,7 +25,8 @@ The overall approach is described in code/Rover_Project_Test_Notebook.ipynb.
 In order to identify navigatable terrain, obstacles, and samples of interest I created analyze_color(img, high, low, color=0, channel=0) (utility function) that helps to try various color channels and thresholds. The function is located in code cell 6 of the ipython book.
 Next, I identified the best color channels and the best thresholds for:
 * navigable terrain (code cell 7): Navigatable terrain is best identified in YUV color scheme on Y channel. For the threshold I used the following bounds (160, 255).
-* sample rock (code cell 8): Navigatable terrain is best identified in LAB color scheme on B channel. For the threshold I used the following bounds (150, 255).
+* sample rock (code cell 8): Navigatable terrain is best identified in LAB color scheme on B channel. For the threshold I used the following bounds (150, 255):
+![alt text][samplerock]
 
 obstacles will be defined as everything else. For illustration please refere to code/perception.py lines 125 and 126.
 
